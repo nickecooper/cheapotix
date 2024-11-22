@@ -1,24 +1,86 @@
 package com.cheapotix.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class Game {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 	
-	private String Title;
+	private String title;
 	
-	private String link;
+	private String ticketsLink;
 	
 	private String arenaId;
 	
 	private double minPrice;
 	
-	private boolean hasPassed;
+	private LocalDateTime date;
 
+	public Game() {
+		
+	}
+	
+	public Game(String id, String title, String ticketsLink, String arenaId, double minPrice, LocalDateTime date) {
+		this.id = id;
+		this.title = title;
+		this.ticketsLink = ticketsLink;
+		this.arenaId = arenaId;
+		this.minPrice = minPrice;
+		this.date = date;
+	}
+
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getticketsLink() {
+		return ticketsLink;
+	}
+
+	public void setticketsLink(String ticketsLink) {
+		this.ticketsLink = ticketsLink;
+	}
+
+	public String getArenaId() {
+		return arenaId;
+	}
+
+	public void setArenaId(String arenaId) {
+		this.arenaId = arenaId;
+	}
+
+	public double getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(double minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	public LocalDateTime isDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+	
+	
 }
