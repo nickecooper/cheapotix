@@ -1,21 +1,27 @@
 package com.cheapotix.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "games")
 public class Game {
 	@Id
 	private String id;
 	
 	private String title;
 	
+	@Column(name= "ticketslink")
 	private String ticketsLink;
 	
+	@Column(name= "arenaid")
 	private String arenaId;
 	
+	@Column(name= "minprice")
 	private double minPrice;
 	
 	private LocalDateTime date;
