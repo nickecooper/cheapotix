@@ -76,7 +76,7 @@ public class CheapotixClient {
 					String url = event.get("url").asText();
 					double minPrice;
 					if (event.get("priceRanges") == null) {
-						minPrice = -1;
+						minPrice = -1.0;
 					}else {
 						minPrice = event.get("priceRanges").get(0).get("min").asDouble();
 					}

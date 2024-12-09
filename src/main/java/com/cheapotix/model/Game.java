@@ -80,7 +80,7 @@ public class Game {
 		this.minPrice = minPrice;
 	}
 
-	public LocalDateTime isDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
