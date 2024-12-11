@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Main Page</title>
+	<link rel="stylesheet" th:href="@{/css/indexStyles.css}">
 </head>
 <body>
 	<h1>Main Page</h1>
@@ -48,19 +49,18 @@
 	        <input type="number" name="threshhold" required>
 	    </div>
 	    <button type="submit">Show Cheap Ticket Options</button>
-	</formaction="/updateGames" method="post">
+	</form>
 	
 	<p></p>
 	<h1>Available Games</h1>
-	    <ul>
-	        <li th:each="game : ${games}">
-	            <!-- Access properties of your entity, for example 'name' or 'minprice' -->
-	            <span th:text="${game.title}">Game Name</span> 
-	            <span th:text="${game.date}">Date</span>
-				<span th:text="${game.minPrice}">Min Price</span>
-				<span th:text="${game.ticketsLink}">Tickets Link</span>
-	        </li>
-	    </ul>
+    <ul>
+        <li th:each="game : ${games}">
+            <span th:text="${game.title}">Game Name</span> 
+            <span th:text="${game.date}">Date</span>
+			<span th:text="${game.minPrice}">Min Price</span>
+			<a th:href="${game.ticketsLink}" th:text="${game.ticketsLink}">Tickets Link</a>
+        </li>
+    </ul>
 	
 	<!--<div class="scrollbox">
 	  <label><input type="checkbox" name="option1" /> Option 1</label>

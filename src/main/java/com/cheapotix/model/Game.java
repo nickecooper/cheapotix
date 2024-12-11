@@ -56,11 +56,11 @@ public class Game {
 		this.title = title;
 	}
 
-	public String getticketsLink() {
+	public String getTicketsLink() {
 		return ticketsLink;
 	}
 
-	public void setticketsLink(String ticketsLink) {
+	public void setTicketsLink(String ticketsLink) {
 		this.ticketsLink = ticketsLink;
 	}
 
