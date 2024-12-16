@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Cheapotix</title>
+</head>
+<body>
+	<nav>
+		<ul>
+			<!--<li><a th:href="@{/}">Home</a></li>-->
+			<li th:if="${#request.userPrincipal != null}"><a th:href="@{/logout}">Logout</a></li>
+			<li th:if="${#request.userPrincipal == null}"><a th:href="@{/login}">Login</a></li>
+			<li th:if="${#request.userPrincipal == null}"><a th:href="@{/register}">Register</a></li>
+		</ul>
+	</nav>
+	<div th:fragment="content"></div>
+</body>	
+</html>
