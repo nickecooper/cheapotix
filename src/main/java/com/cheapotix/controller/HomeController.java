@@ -1,5 +1,6 @@
 package com.cheapotix.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,13 @@ public class HomeController {
 	}
 
 	@GetMapping("/")
-	public String index(){
+	public String index(Principal principal, Model model){
+		if (principal != null) {
+			String email = principal.getName();
+			model.addAttribute("email", email);
+		}else{
+			model.addAttribute("email", "guest");
+		}
 		return "index";
 	}
 	

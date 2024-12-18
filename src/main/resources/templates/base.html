@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<title>Cheapotix</title>
 </head>
 <body>
 	<nav>
 		<ul>
-			<!--<li><a th:href="@{/}">Home</a></li>-->
-			<li th:if="${#request.userPrincipal != null}"><a th:href="@{/logout}">Logout</a></li>
-			<li th:if="${#request.userPrincipal == null}"><a th:href="@{/login}">Login</a></li>
-			<li th:if="${#request.userPrincipal == null}"><a th:href="@{/register}">Register</a></li>
+			<!--<li th:if="${email != 'guest'}"><a th:href="@{/logout}">Logout</a></li>-->
+			<form th:if="${email != 'guest'}" th:action="@{/logout}" method="post">
+			    <button type="submit">Logout</button>
+			</form>
+			<form th:if="${email == 'guest'}" th:action="@{/login}" method="get">
+				<button type="submit">Login</button>
+			</form>
+			<form th:if="${email == 'guest'}" th:action="@{/register}" method="get">
+				<button type="submit">Register</button>
+			</form>
+			
 		</ul>
 	</nav>
-	<div th:fragment="content"></div>
+	<div layout:fragment="content"></div>
 </body>	
 </html>

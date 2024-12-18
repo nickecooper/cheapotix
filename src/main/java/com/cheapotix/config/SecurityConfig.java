@@ -16,19 +16,9 @@ import com.cheapotix.service.UserService;
 @Configuration
 public class SecurityConfig {
 
-	private final UserService userService;
-	
-	public SecurityConfig(UserService userService) {
-		this.userService = userService;
-	}
 	
 	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-	
-	@Bean
-	public UserDetailsService userDetailsService() {
+	public UserDetailsService userDetailsService(UserService userService) {
 		return email -> {
 			AppUser user = userService.findByEmail(email);
 			if (user == null) {
@@ -59,6 +49,11 @@ public class SecurityConfig {
 						.permitAll()
 				)
 				.build();
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 	
 }

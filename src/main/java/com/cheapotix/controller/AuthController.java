@@ -1,5 +1,7 @@
 package com.cheapotix.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -24,8 +26,26 @@ public class AuthController {
 	}
 
 	@GetMapping("/register")
-	public String showRegistrationForm() {
+	public String showRegistrationForm(Principal principal, Model model) {
+		if (principal != null) {
+			String email = principal.getName();
+			model.addAttribute("email", email);
+		}else{
+			model.addAttribute("email", "guest");
+		}
+		model.addAttribute("form", new RegistrationForm());
 		return "register";
+	}
+	
+	@GetMapping("/login")
+	public String showLoginPage(Principal principal, Model model) {
+		if (principal != null) {
+			String email = principal.getName();
+			model.addAttribute("email", email);
+		}else{
+			model.addAttribute("email", "guest");
+		}
+		return "login";
 	}
 	
 	public static class RegistrationForm {
@@ -43,6 +63,24 @@ public class AuthController {
 					+ " a lowercase letter, and a number."
 		)
 		public String password;
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+		
+		
 		
 	}
 	
