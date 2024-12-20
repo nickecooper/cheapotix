@@ -35,11 +35,15 @@ public class GameService {
 		
 		Game newGame;
 		if (game.isPresent()) {
+			//if game is already in database then update with latest minimum price from ticketmaster api
 			newGame = game.get();
-			newGame.setArenaId(arenaId);
-			newGame.setDate(date);
+			if (newGame.getMinPrice() != minPrice) {
+				System.out.println("MIN PRICE DIFFERENT... OLD: " + newGame.getMinPrice() + ", NEW: " + minPrice);
+			}
+			newGame.setMinPrice(minPrice);
 			
 		}else {
+			//if game not in database yet then add
 			newGame = new Game(id,  title,  ticketsLink,  arenaId,  minPrice,  date);
 		}
 		return gameRepository.save(newGame);

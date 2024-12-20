@@ -88,6 +88,7 @@ public class AuthController {
 	public String register(@ModelAttribute("form") @Validated RegistrationForm form,  Model model) {
 		if (userService.findByEmail(form.email) != null) {
 			model.addAttribute("error", "Email already registered with user");
+			model.addAttribute("email", "guest");
 			return "register";
 		}
 		
