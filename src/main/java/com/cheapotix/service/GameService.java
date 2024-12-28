@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.cheapotix.model.Game;
 import com.cheapotix.repository.GameRepository;
 
+import java.text.MessageFormat;
+
 @Service
 public class GameService {
 
@@ -38,10 +40,11 @@ public class GameService {
 			//if game is already in database then update with latest minimum price from ticketmaster api
 			newGame = game.get();
 			if (newGame.getMinPrice() != minPrice) {
-				System.out.println("MIN PRICE DIFFERENT... OLD: " + newGame.getMinPrice() + ", NEW: " + minPrice);
+				System.out.println(MessageFormat.format("OLD: {0}, NEW: {1}, TITLE: {2}, LINK: {3}", 
+						newGame.getMinPrice(), minPrice, title, ticketsLink));
 			}
 			newGame.setMinPrice(minPrice);
-			
+		
 		}else {
 			//if game not in database yet then add
 			newGame = new Game(id,  title,  ticketsLink,  arenaId,  minPrice,  date);

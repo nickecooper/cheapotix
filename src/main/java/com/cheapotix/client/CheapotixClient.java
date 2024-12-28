@@ -71,8 +71,8 @@ public class CheapotixClient {
 				for (JsonNode event : events) {
 					String id = event.get("id").asText();
 					String title = event.get("name").asText();
-					System.out.println(title + "");
-					System.out.println(arenaId);
+//					System.out.println(title + "");
+//					System.out.println(arenaId);
 					String url = event.get("url").asText();
 					double minPrice;
 					if (event.get("priceRanges") == null) {

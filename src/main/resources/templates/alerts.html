@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{base}">
+<head>
+	<title>Settings Page</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<form action="/savealerts" method="post">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	    <div>
+	        <label>Home Arenas:</label><br>
+	        <input type="checkbox" name="arenaIds" value="KovZ917AiMF"> 76ers <br>
+	        <input type="checkbox" name="arenaIds" value="KovZ917A_fV"> Bucks <br>
+	        <input type="checkbox" name="arenaIds" value="KovZpa2M7e"> Bulls <br>
+			<input type="checkbox" name="arenaIds" value="Z6r9jZ6aAe"> 	Cavaliers	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpa2gne"> 	Celtics	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZ917Acq0"> 	Clippers	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAE6vlA"> 	Grizzlies	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpa2Xke"> 	Hawks	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAJtFaA"> 	Heat	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZA6AEIA"> 	Hornets	 <br>
+			<input type="checkbox" name="arenaIds" value="Z7r9jZ1A7CK7v"> 	Jazz	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAEF76A"> 	Kings	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZA7AAEA"> 	Knicks	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAEdntA"> 	Lakers	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAEvEEA"> 	Magic	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAJ67eA"> 	Mavericks	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZ917AtP3"> 	Nets	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAFaJeA"> 	Nuggets	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZA6keIA"> 	Pacers	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZ917A25V"> 	Pistons	 <br>
+			<input type="checkbox" name="arenaIds" value="Z7r9jZ1A7CaoY"> 	Pelicans	 <br>
+			<input type="checkbox" name="arenaIds" value="ZFr9jZ7v7v"> 	Rockets	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAFFE1A"> 	Raptors	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAE617A"> 	Suns	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpZAJJEdA"> 	Spurs	 <br>
+			<input type="checkbox" name="arenaIds" value="ZFr9jZe667"> 	Timberwolves	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpa2Wre"> 	Thunder	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpa6MXe"> 	Trailblazers	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZ917Ah1H"> 	Warriors	 <br>
+			<input type="checkbox" name="arenaIds" value="KovZpaKuJe"> 	Wizards	 <br>
+	    </div>
+	    <div>
+	        <label>Maximum Ticket Price:</label>
+	        <input type="number" name="threshhold" required>
+	    </div>
+	    <button type="submit">Show Cheap Ticket Options</button>
+	</form>
+	</div>
+</body>

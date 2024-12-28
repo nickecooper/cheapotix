@@ -28,6 +28,8 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String index(Principal principal, Model model){
+		
+		//This if else statement determines whether user sees logged in navbar or guest navbar
 		if (principal != null) {
 			String email = principal.getName();
 			model.addAttribute("email", email);

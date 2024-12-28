@@ -1,5 +1,8 @@
 package com.cheapotix.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +32,19 @@ public class UserService {
 		return userRepository.findByEmail(email).orElse(null);
 	}
 
-	
+	public void updateUserPreferences(String email, List<String> arenaIds, double threshhold) throws Exception {
+		userRepository.updateArenaIdsAndThreshhold(email, arenaIds, threshhold);
+//		Optional<AppUser> appUser = userRepository.findByEmail(email);
+//		
+//		AppUser user;
+//		if(appUser.isPresent()) {
+//		    user = appUser.get();
+//			user.setArenaIds(arenaIds);
+//			user.setThreshhold(threshhold);
+//		}else{
+//			throw new Exception("Could not find user " + email + " in the database");
+//		}
+//		return userRepository.save(user);
+		
+	}
 }
