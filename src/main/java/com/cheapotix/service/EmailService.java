@@ -84,6 +84,7 @@ public class EmailService {
 		for (Game game : cheapGames) {
 			sb.append(game.getTitle()).append(", "+ game.getDate()).append(", TicketMaster Link: ").append(game.getTicketsLink()).append(", Minimum Ticket Price: ")
 			.append(game.getMinPrice()).append("\n\n");
+		}
 	
 		
 		String footer = """
