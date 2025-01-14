@@ -45,7 +45,19 @@
 	        <label>Maximum Ticket Price:</label>
 	        <input type="number" name="threshhold" required>
 	    </div>
-	    <button type="submit">Show Cheap Ticket Options</button>
+		<div>
+			<label>Frequency of email alerts</label>
+			<select id="emailfrequency" name="emailfrequency">
+				<option value="1">4 times per day</option>
+				<option value="2">Twice per day</option>
+				<option value="4">Once per day</option>
+				<option value="8">Once every 2 days</option>
+				<option value="16">Once every 4 days</option>
+				<option value="32">Once every 8 days</option>
+			</select>
+			<p>(Will only email if any cheap tickets are available)</p>
+		</div>
+	    <button type="submit">Modify Email Alert Settings</button>
 	</form>
 	</div>
 </body>

@@ -3,6 +3,7 @@ package com.cheapotix.controller;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,7 +64,8 @@ public class AlertsController {
 	
 	@PostMapping("/savealerts")
 	public String saveSettings(@RequestParam(name = "arenaIds") List<String> arenaIds,
-            @RequestParam(name = "threshhold") Double threshhold, Principal principal, Model model) throws Exception {
+            @RequestParam(name = "threshhold") Double threshhold, 
+            @RequestParam("emailfrequency") Integer emailFrequency, Principal principal, Model model) throws Exception {
 		
 		String email;
 		if (principal != null) {
@@ -71,7 +73,9 @@ public class AlertsController {
 		}else{
 			email = "guest";
 		}
-		userService.updateUserPreferences(email, arenaIds, threshhold);
+		
+		int updatesUntilEmail = emailFrequency;
+		userService.updateUserPreferences(email, arenaIds, threshhold, updatesUntilEmail, emailFrequency);
 		return "redirect:/alerts?saved";
 	}
 }

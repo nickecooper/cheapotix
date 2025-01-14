@@ -1,5 +1,6 @@
 package com.cheapotix.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -12,18 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cheapotix.model.Game;
 import com.cheapotix.repository.GameRepository;
 import com.cheapotix.service.CheapotixService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.cheapotix.service.EmailService;
 
 @Controller
 public class HomeController {
 	
 	private final CheapotixService cheapotixService;
 	private final GameRepository gameRepository;
+	private final EmailService emailService;
 	
-	public HomeController(CheapotixService cheapotixService, GameRepository gameRepository) {
+	public HomeController(CheapotixService cheapotixService, GameRepository gameRepository, EmailService emailService) {
 		this.cheapotixService = cheapotixService;
 		this.gameRepository = gameRepository;
+		this.emailService = emailService;
 	}
 
 	@GetMapping("/")
@@ -53,8 +55,9 @@ public class HomeController {
 	}
 	
 	@PostMapping("/updateGames")
-	public String updateGames() throws JsonMappingException, JsonProcessingException {
-		cheapotixService.updateGames();
+	public String updateGames() throws IOException {
+		//cheapotixService.updateGames();
+		emailService.chooseEmails();
 		return "redirect:/";
 	}
 }

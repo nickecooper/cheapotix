@@ -91,11 +91,11 @@ public class CheapotixClient {
 					gameService.addOrUpdateGame(id, title, url, arenaId, minPrice, dateTime);
 				}
 			}else {
-				System.out.println("reading api didn't work... returning");
+				System.out.println("json events array not properly read as array... returning");
 				return;
 			}
 		}else {
-			System.out.println("reading api didn't work... returning");
+			System.out.println("either \"_embedded\" or \"events\" not found... returning");
 			return;
 		}
 	}

@@ -32,8 +32,8 @@ public class UserService {
 		return userRepository.findByEmail(email).orElse(null);
 	}
 
-	public void updateUserPreferences(String email, List<String> arenaIds, double threshhold) throws Exception {
-		userRepository.updateArenaIdsAndThreshhold(email, arenaIds, threshhold);
+	public void updateUserPreferences(String email, List<String> arenaIds, double threshhold, int updatesUntilEmail, int emailFrequency) throws Exception {
+		userRepository.updateArenaIdsAndThreshhold(email, arenaIds, threshhold, updatesUntilEmail, emailFrequency);
 //		Optional<AppUser> appUser = userRepository.findByEmail(email);
 //		
 //		AppUser user;
