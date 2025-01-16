@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>test</title>
+		<!-- <link rel="stylesheet" th:href="@{/css/emailStyles.css}"> -->
+		<style>
+			ul {
+			  list-style: none;
+			  padding: 0;
+			}
+
+			li {
+			  display: grid;
+			  grid-template-columns: repeat(4, 1fr);
+			  list-style: none;
+			}
+
+			span {
+			  background-color: #f0f8ff; 
+			  padding: 10px;
+			  border: 1px solid #ccc;
+			  text-align: center;
+			}
+
+			a {
+			  background-color: #E3FCEF; 
+			  padding: 10px;
+			  border: 1px solid #ccc;
+			  text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <p th:text="'Hello Cheapotix User,'+''+''+
+					 'There are currently some cheap tickets you may be interested in purchasing:'+
+					 +''+''"></p> -->
+		 <p th:utext="'Hello Cheapotix User, <br><br>'
+		 			  + 'There are currently some cheap tickets you may be interested in purchasing:'
+		 			  + '<br><br>'"></p>
+	    <!-- <ul>
+	        <li th:each="game : ${games}">
+	            <span th:text="${game.title}">Game Name</span> 
+				
+				<span th:text="${#temporals.format(game.date, 'MM/dd/yyyy hh:mm a')} + ' Local Time'">Date</span>
+				
+				<span th:text="${#numbers.formatCurrency(game.minPrice)}">Min Price</span>
+				
+				<a th:href="${game.ticketsLink}">Purchase Tickets Here</a>
+	        </li>
+	    </ul> -->
+		<table>
+			<thead>
+				<tr>
+					<th>Game Name</th>
+					<th>Date</th>
+					<th>Min Price</th>
+					<th>Purchase Tickets</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="game : ${games}">
+					<td><span th:text="${game.title}"></span></td> 
+					<!-- turn the LocalDateTime object to display -->
+					<td><span th:text="${#temporals.format(game.date, 'MM/dd/yyyy hh:mm a')} + ' Local Time'"></span></td>
+					<!-- turn the minprice from a double into displaying as currency -->
+					<td><span th:text="${#numbers.formatCurrency(game.minPrice)}"></span></td>
+					<td>
+						<a th:href="${game.ticketsLink}">Purchase Tickets Here</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p th:utext="'<br><br>Enjoy!'
+		 			  + '<br><br>Sincerely'
+		 			  + '<br>Cheapotix'"></p>
+		<!-- <p th:utext="${''+''+'Enjoy!'+
+					 ''+''+'Sincerely,'+
+					 +''+'Cheapotix'}"></p> -->
+	</body>
+</html>

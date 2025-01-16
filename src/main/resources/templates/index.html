@@ -59,9 +59,14 @@
     <ul>
         <li th:each="game : ${games}">
             <span th:text="${game.title}">Game Name</span> 
-            <span th:text="${game.date}">Date</span>
-			<span th:text="${game.minPrice}">Min Price</span>
-			<a th:href="${game.ticketsLink}" th:text="${game.ticketsLink}">Tickets Link</a>
+			
+			<!-- turn the LocalDateTime object to displa -->
+			<span th:text="${#temporals.format(game.date, 'MM/dd/yyyy hh:mm a')} + ' Local Time'">Date</span>
+			
+			<!-- turn the minprice from a double into displaying as currency -->
+			<span th:text="${#numbers.formatCurrency(game.minPrice)}">Min Price</span>
+			
+			<a th:href="${game.ticketsLink}">Purchase Tickets Here</a>
         </li>
     </ul>
 	</div>

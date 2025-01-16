@@ -14,18 +14,21 @@ import com.cheapotix.model.Game;
 import com.cheapotix.repository.GameRepository;
 import com.cheapotix.service.CheapotixService;
 import com.cheapotix.service.EmailService;
+import com.cheapotix.service.GameService;
 
 @Controller
 public class HomeController {
 	
 	private final CheapotixService cheapotixService;
-	private final GameRepository gameRepository;
+	//private final GameRepository gameRepository;
 	private final EmailService emailService;
+	private final GameService gameService;
 	
-	public HomeController(CheapotixService cheapotixService, GameRepository gameRepository, EmailService emailService) {
+	public HomeController(CheapotixService cheapotixService, /*GameRepository gameRepository,*/ EmailService emailService, GameService gameService) {
 		this.cheapotixService = cheapotixService;
-		this.gameRepository = gameRepository;
+		//this.gameRepository = gameRepository;
 		this.emailService = emailService;
+		this.gameService = gameService;
 	}
 
 	@GetMapping("/")
@@ -47,7 +50,8 @@ public class HomeController {
             @RequestParam(name = "threshhold") Double threshhold,
             Model model) {
 		
-		List<Game> games = gameRepository.findByArenaIdsAndThreshhold(arenaIds, threshhold);
+		//List<Game> games = gameRepository.findByArenaIdsAndThreshhold(arenaIds, threshhold);
+		List<Game> games = gameService.getSortedGames(arenaIds, threshhold);
 		
 		model.addAttribute("games", games);
 		

@@ -1,6 +1,8 @@
 package com.cheapotix.service;
 
 import java.time.LocalDateTime;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -19,18 +21,26 @@ public class GameService {
 		this.gameRepository = gameRepository;
 	}
 	
-//	public Game addGame(String id, String title, String ticketsLink, String arenaId, double minPrice, boolean dateHasPassed) {
-//		Game newGame = new Game(id,  title,  ticketsLink,  arenaId,  minPrice,  dateHasPassed) ;
-//		return gameRepository.save(newGame);
-//	}
-//	
-//	public Game updateGameStatus(String id, double minPrice, boolean dateHasPassed) {
-//		Game game = gameRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"))
-//	}
-//	
-//	public boolean doesGameExist(String id, String arenaId) {
-//		return gameRepository.existsByIdAndArenaid(id, arenaId);
-//	}
+	//grabs games by arena id and threshhold then sort by date and remove games in the past
+	public List<Game> getSortedGames(List<String> arenaIds, double threshhold){
+		List<Game> unsortedGames = gameRepository.findByArenaIdsAndThreshhold(arenaIds, threshhold);
+		
+		//removes games that are in the past
+		Iterator<Game> iter = unsortedGames.iterator();
+		while (iter.hasNext()) {
+			Game game = iter.next();
+			if (game.getDate().isBefore(LocalDateTime.now())) {
+				iter.remove();
+			}
+		}
+		
+		//sorts games by ascending order of date and time
+		unsortedGames.sort((g1, g2) -> g1.getDate().compareTo(g2.getDate()));
+		
+		return unsortedGames;
+		
+	}
+	
 	public Game addOrUpdateGame(String id, String title, String ticketsLink, String arenaId, double minPrice, LocalDateTime date) {
 		
 		Optional<Game> game = gameRepository.findByIdAndArenaId(id, arenaId);
