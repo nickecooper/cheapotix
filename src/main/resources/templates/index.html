@@ -8,10 +8,12 @@
 <body>
 	<div layout:fragment="content">
 	<h1>Main Page</h1>
-	<form action="/updateGames" method="post">
+	<!-- Test for sending emails via the click of a button
+		
+		<form action="/updateGames" method="post">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 		<button type="submit">Update Ticket Database</button>
-	</form>
+	</form> -->
 	<p></p>
 	<form action="/returnGames" method="get">
 	    <div>
@@ -60,7 +62,7 @@
         <li th:each="game : ${games}">
             <span th:text="${game.title}">Game Name</span> 
 			
-			<!-- turn the LocalDateTime object to displa -->
+			<!-- turn the LocalDateTime object to display -->
 			<span th:text="${#temporals.format(game.date, 'MM/dd/yyyy hh:mm a')} + ' Local Time'">Date</span>
 			
 			<!-- turn the minprice from a double into displaying as currency -->

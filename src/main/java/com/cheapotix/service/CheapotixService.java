@@ -22,6 +22,7 @@ public class CheapotixService {
 	public void updateGames() throws JsonMappingException, JsonProcessingException {
 		List<String> arenaIds = new ArrayList<>();
 		
+		// all home arena ids for nba games (in alphabetical order from A-Z)
 		arenaIds.add("KovZ917AiMF");
 		arenaIds.add("KovZ917A_fV");
 		arenaIds.add("KovZpa2M7e");

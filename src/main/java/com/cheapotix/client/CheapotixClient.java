@@ -71,8 +71,6 @@ public class CheapotixClient {
 				for (JsonNode event : events) {
 					String id = event.get("id").asText();
 					String title = event.get("name").asText();
-//					System.out.println(title + "");
-//					System.out.println(arenaId);
 					String url = event.get("url").asText();
 					double minPrice;
 					if (event.get("priceRanges") == null) {
@@ -88,7 +86,12 @@ public class CheapotixClient {
 					LocalTime time = LocalTime.parse(timeString);
 					LocalDateTime dateTime = date.atTime(time);
 					
+					if(minPrice == -1.0 || url.contains("fevo-enterprise")) {
+						continue;
+					}
+					
 					gameService.addOrUpdateGame(id, title, url, arenaId, minPrice, dateTime);
+					
 				}
 			}else {
 				System.out.println("json events array not properly read as array... returning");

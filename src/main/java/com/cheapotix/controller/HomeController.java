@@ -20,13 +20,11 @@ import com.cheapotix.service.GameService;
 public class HomeController {
 	
 	private final CheapotixService cheapotixService;
-	//private final GameRepository gameRepository;
 	private final EmailService emailService;
 	private final GameService gameService;
 	
-	public HomeController(CheapotixService cheapotixService, /*GameRepository gameRepository,*/ EmailService emailService, GameService gameService) {
+	public HomeController(CheapotixService cheapotixService, EmailService emailService, GameService gameService) {
 		this.cheapotixService = cheapotixService;
-		//this.gameRepository = gameRepository;
 		this.emailService = emailService;
 		this.gameService = gameService;
 	}
@@ -50,7 +48,6 @@ public class HomeController {
             @RequestParam(name = "threshhold") Double threshhold,
             Model model) {
 		
-		//List<Game> games = gameRepository.findByArenaIdsAndThreshhold(arenaIds, threshhold);
 		List<Game> games = gameService.getSortedGames(arenaIds, threshhold);
 		
 		model.addAttribute("games", games);
@@ -58,10 +55,12 @@ public class HomeController {
 		return "index";
 	}
 	
-	@PostMapping("/updateGames")
-	public String updateGames() throws IOException {
-		//cheapotixService.updateGames();
-		emailService.chooseEmails();
-		return "redirect:/";
-	}
+// comment out test route for testing sending out emails	
+	
+//	@PostMapping("/updateGames")
+//	public String updateGames() throws IOException {
+//		//cheapotixService.updateGames();
+//		emailService.chooseEmails();
+//		return "redirect:/";
+//	}
 }

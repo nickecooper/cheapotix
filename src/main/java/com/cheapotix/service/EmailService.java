@@ -33,14 +33,12 @@ public class EmailService {
 	private String sendGridApiKey;
 	
 	private final UserRepository userRepository;
-	private final JavaMailSender mailSender;
 	private final GameService gameService;
 	private final SpringTemplateEngine template;
 	
-	public EmailService(UserRepository userRepository, JavaMailSender mailSender, GameService gameService, SpringTemplateEngine template) {
+	public EmailService(UserRepository userRepository, GameService gameService, SpringTemplateEngine template) {
 		this.userRepository = userRepository;
 		this.gameService = gameService;
-		this.mailSender = mailSender;
 		this.template = template;
 	}
 	
@@ -59,7 +57,6 @@ public class EmailService {
 			}
 			double threshhold = user.getThreshhold();
 			
-			//List<Game> cheapGames = gameRepository.findByArenaIdsAndThreshhold(arenaIds, threshhold);
 			List<Game> cheapGames = gameService.getSortedGames(arenaIds, threshhold);
 			
 			if (user.getUpdatesUntilEmail() > 1) {
@@ -81,46 +78,13 @@ public class EmailService {
 		Context context = new Context();
 		context.setVariable("games", cheapGames);
 		
+		//grab email template from email.html
 		String htmlContent = template.process("email", context);
-		
-//		String header = """
-//		    Hello Cheapotix User,
-//
-//		    There are currently some cheap tickets you may be interested in purchasing:
-//		    
-//		    """;
-//		
-//		StringBuilder sb = new StringBuilder(header);
-//		for (Game game : cheapGames) {
-//			sb.append(game.getTitle()).append(", "+ game.getDate()).append(", TicketMaster Link: ").append(game.getTicketsLink()).append(", Minimum Ticket Price: ")
-//			.append(game.getMinPrice()).append("\n\n");
-//		}
-//	
-//		
-//		String footer = """
-//		    
-//		    Enjoy!
-//
-//		    Sincerely,
-//		    Cheapotix
-//		    """;
-//		
-//		sb.append(footer);
-//		
-//		String body = sb.toString();
-		
 
-		//create the email with the text and send it
-//		SimpleMailMessage email = new SimpleMailMessage();		
-//		email.setTo(user.getEmail());
-//		email.setSubject("Cheap Tickets Alert!!");
-//		email.setText(body);
-//		mailSender.send(email);
 		
 		Email from = new Email("cheapotix@gmail.com");
 		String subject = "Cheap Tickets Alert!!";
 		Email to = new Email(user.getEmail());
-		//Content content = new Content("text/plain", body);
 		Content content = new Content("text/html", htmlContent);
 		Mail mail = new Mail(from, subject, to, content);
 		

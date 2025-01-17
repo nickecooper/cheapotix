@@ -15,13 +15,6 @@ import jakarta.transaction.Transactional;
 public interface UserRepository extends JpaRepository<AppUser, Long> {
 	Optional<AppUser> findByEmail(String email);
 	
-//	@Modifying
-//	@Transactional
-//	@Query(value = "UPDATE users SET arenaids = ARRAY[:arenaids], threshhold = :threshhold WHERE email = :email", 
-//			nativeQuery = true)
-//    void updateArenaIdsAndThreshhold(@Param("email") String email,
-//    										@Param("arenaids") List<String> arenaIds, 
-//                                            @Param("threshhold") Double threshhold);
 	
 	@Modifying
 	@Transactional

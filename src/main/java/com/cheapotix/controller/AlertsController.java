@@ -36,31 +36,6 @@ public class AlertsController {
 		return "alerts";
 	}
 	
-	public static class SaveSettingsForm {
-		
-		@NotBlank
-		public List<String> arenaIds;
-		
-		@NotBlank
-		public double threshhold;
-
-		public List<String> getArenaIds() {
-			return arenaIds;
-		}
-
-		public void setArenaIds(List<String> arenaIds) {
-			this.arenaIds = arenaIds;
-		}
-
-		public double getThreshhold() {
-			return threshhold;
-		}
-
-		public void setThreshhold(double threshhold) {
-			this.threshhold = threshhold;
-		}
-		
-	}
 	
 	@PostMapping("/savealerts")
 	public String saveSettings(@RequestParam(name = "arenaIds") List<String> arenaIds,

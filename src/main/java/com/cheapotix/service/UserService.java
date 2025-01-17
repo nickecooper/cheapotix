@@ -34,17 +34,6 @@ public class UserService {
 
 	public void updateUserPreferences(String email, List<String> arenaIds, double threshhold, int updatesUntilEmail, int emailFrequency) throws Exception {
 		userRepository.updateArenaIdsAndThreshhold(email, arenaIds, threshhold, updatesUntilEmail, emailFrequency);
-//		Optional<AppUser> appUser = userRepository.findByEmail(email);
-//		
-//		AppUser user;
-//		if(appUser.isPresent()) {
-//		    user = appUser.get();
-//			user.setArenaIds(arenaIds);
-//			user.setThreshhold(threshhold);
-//		}else{
-//			throw new Exception("Could not find user " + email + " in the database");
-//		}
-//		return userRepository.save(user);
 		
 	}
 }
